@@ -5,11 +5,11 @@ import { Component } from '@angular/core';
   imports: [],
   template: `
 		<div class="task-card-header">
-			<div>
-				<h2 class="task-title">Update Documentation</h2>
-				<p class="task-description">Review and update the API documentation with new endpoints</p>
-			</div>
+			<h2 class="task-title">Update Documentation</h2>
 			<div class="task-actions">
+				<button class="task-action-button cancel">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6"/><path d="M9 9l6 6"/></svg>
+				</button>
 				<button class="task-action-button complete">
 					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
 				</button>
@@ -18,6 +18,7 @@ import { Component } from '@angular/core';
 				</button>
 			</div>
 		</div>
+		<p class="task-description">Review and update the API documentation with new endpoints</p>
   `,
   styleUrls: ['./task-card-header.component.scss']
 })

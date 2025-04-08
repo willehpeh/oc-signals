@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 1rem;
 }
 
 .task-title {
@@ -12,10 +11,20 @@
   margin-bottom: 0.5rem;
 }
 
+.task-card-header.completed .task-title {
+  color: var(--complete-color);
+  text-decoration: line-through;
+  text-decoration-color: var(--complete-color);
+}
+
 .task-description {
   font-size: 0.875rem;
   color: var(--text-secondary);
   margin-bottom: 1rem;
+}
+
+.task-card-header.completed .task-description {
+  opacity: 0.7;
 }
 
 .task-actions {
@@ -41,6 +50,14 @@
 
 .task-action-button.complete:hover {
   background-color: var(--complete-hover);
+}
+
+.task-action-button.cancel {
+  color: var(--text-secondary);
+}
+
+.task-action-button.cancel:hover {
+  background-color: var(--cancel-hover);
 }
 
 .task-action-button.delete {
