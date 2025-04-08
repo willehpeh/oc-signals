@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
       task-card works!
     </p>
   `,
-  styles: ``
+  styleUrls: ['./task-card.component.scss']
 })
 export class TaskCardComponent {
 
