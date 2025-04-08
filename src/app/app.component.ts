@@ -1,13 +1,21 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './core/layout/header/header.component';
+import { TaskGridComponent } from './tasks/components/task-grid/task-grid.component';
+import { ProgressComponent } from './tasks/components/progress/progress.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [
+    HeaderComponent,
+    TaskGridComponent,
+    ProgressComponent
+  ],
   template: `
-    <h1>Welcome to {{title}}!</h1>
-
-    <router-outlet />
+    <div class="container">
+      <app-header/>
+      <app-task-grid/>
+      <app-progress/>
+    </div>
   `,
   styles: [],
 })
