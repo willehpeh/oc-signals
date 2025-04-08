@@ -1,0 +1,52 @@
+.task-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.task-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.task-description {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.task-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.task-action-button {
+  padding: 0.5rem;
+  border: none;
+  background: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-action-button.complete {
+  color: var(--complete-color);
+}
+
+.task-action-button.complete:hover {
+  background-color: var(--complete-hover);
+}
+
+.task-action-button.delete {
+  color: var(--delete-color);
+}
+
+.task-action-button.delete:hover {
+  background-color: var(--delete-hover);
+}
