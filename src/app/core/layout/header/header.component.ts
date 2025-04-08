@@ -4,9 +4,10 @@ import { Component } from '@angular/core';
   selector: 'app-header',
   imports: [],
   template: `
-    <p>
-      header works!
-    </p>
+		<div class="header-container">
+			<h1 class="header">Signalize</h1>
+			<p class="header-tagline">So your tasks aren't a chore to complete</p>
+		</div>
   `,
   styles: ``
 })
