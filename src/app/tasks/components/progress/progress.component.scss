@@ -1,9 +1,9 @@
 .progress-container {
-  margin-top: 3rem;
   padding: 1.5rem;
   background-color: var(--card-bg);
   border-radius: 0.75rem;
   border: 1px solid var(--border-color);
+  flex-grow: 1;
 }
 
 .progress-header {
@@ -37,3 +37,47 @@
   border-radius: 9999px;
   transition: width 0.3s ease;
 }
+
+.progress-wrapper {
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.complete-all-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--complete-color);
+  color: var(--bg-color);
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.complete-all-button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.complete-all-button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .progress-wrapper {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .complete-all-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+

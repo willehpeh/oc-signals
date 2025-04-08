@@ -2,6 +2,7 @@
   color-scheme: dark;
   --bg-color: #0a0a0f;
   --card-bg: #121218;
+  --card-bg-completed: rgba(52, 211, 153, 0.1);
   --border-color: #1f1f2b;
   --border-hover: rgba(34, 211, 238, 0.3);
   --border-selected: rgb(34, 211, 238);
@@ -11,6 +12,7 @@
   --complete-hover: rgba(52, 211, 153, 0.2);
   --delete-color: #fb7185;
   --delete-hover: rgba(251, 113, 133, 0.2);
+  --cancel-hover: rgba(148, 148, 168, 0.2);
   --checkbox-border: #2d2d3d;
   --checkbox-hover: #3d3d4d;
   --checkbox-gradient-from: #22d3ee;
