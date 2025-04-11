@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 
 @Component({
   selector: 'app-progress',
@@ -8,10 +8,10 @@ import { Component } from '@angular/core';
 			<div class="progress-container">
 				<div class="progress-header">
 					<h2 class="progress-title">Overall Progress</h2>
-					<span class="progress-count">2 of 9 tasks completed</span>
+					<span class="progress-count">{{ completedTasks() }} of {{ totalTasks() }} tasks completed</span>
 				</div>
 				<div class="progress-bar">
-					<div class="progress-fill" style="width: 22%"></div>
+					<div class="progress-fill" [style]="'width: ' + progressBarWidth()"></div>
 				</div>
 			</div>
 			<button class="complete-all-button">
@@ -27,5 +27,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./progress.component.scss']
 })
 export class ProgressComponent {
+  totalTasks = signal(9);
+  completedTasks = signal(2);
 
+  progressBarWidth = computed(() => this.completedTasks() / this.totalTasks() * 100 + '%');
 }

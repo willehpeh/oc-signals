@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +21,8 @@ export class HeaderComponent {
   ];
 
   header = signal('Signalize');
-  tagline = signal(this._taglines[0]);
+  taglineIndex = signal(0);
+  tagline = computed(() => this._taglines[this.taglineIndex()]);
 
   constructor() {
     setTimeout(() => {
@@ -33,7 +34,7 @@ export class HeaderComponent {
     }, 3000);
 
     setInterval(() => {
-      this.tagline.set(this._taglines[Math.floor(Math.random() * this._taglines.length)]);
+      this.taglineIndex.set(Math.floor(Math.random() * this._taglines.length));
     }, 5000);
   }
 }
