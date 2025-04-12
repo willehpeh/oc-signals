@@ -20,9 +20,9 @@ export class HeaderComponent {
     `Stay productive with Signalize`
   ];
 
-  header = signal('Signalize');
-  taglineIndex = signal(0);
-  tagline = computed(() => this._taglines[this.taglineIndex()]);
+  header = signal<string>('Signalize');
+  taglineIndex = signal<number>(0);
+  tagline = computed<string>(() => this._taglines[this.taglineIndex()]);
 
   constructor() {
     setTimeout(() => {
