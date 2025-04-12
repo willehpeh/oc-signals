@@ -27,8 +27,8 @@ import { Component, computed, signal } from '@angular/core';
   styleUrls: ['./progress.component.scss']
 })
 export class ProgressComponent {
-  totalTasks = signal(9);
-  completedTasks = signal(2);
+  totalTasks = signal<number>(9);
+  completedTasks = signal<number>(2);
 
-  progressBarWidth = computed(() => this.completedTasks() / this.totalTasks() * 100 + '%');
+  progressBarWidth = computed<string>(() => this.completedTasks() / this.totalTasks() * 100 + '%');
 }
