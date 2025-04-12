@@ -11,7 +11,7 @@ import { Component, computed, signal } from '@angular/core';
 					<span class="progress-count">{{ completedTasks() }} of {{ totalTasks() }} tasks completed</span>
 				</div>
 				<div class="progress-bar">
-					<div class="progress-fill" [style]="'width: ' + progressBarWidth()"></div>
+					<div class="progress-fill" [style.width]="progressBarWidth()"></div>
 				</div>
 			</div>
 			<button class="complete-all-button">
