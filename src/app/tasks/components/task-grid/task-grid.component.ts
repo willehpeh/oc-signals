@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { TaskCardComponent } from '../task-card/task-card.component';
 import { Task } from '../../models/task';
 import { DUMMY_TASKS } from '../../test-data/DUMMY_TASKS';
+import { TaskList } from '../../models/task-list';
 
 @Component({
   selector: 'app-task-grid',
@@ -31,5 +32,6 @@ import { DUMMY_TASKS } from '../../test-data/DUMMY_TASKS';
   `
 })
 export class TaskGridComponent {
-  tasks: Task[] = DUMMY_TASKS;
+  taskList: TaskList = new TaskList(DUMMY_TASKS);
+  tasks: Task[] = this.taskList.tasks();
 }
