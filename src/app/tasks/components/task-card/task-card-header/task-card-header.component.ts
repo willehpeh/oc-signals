@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { Task } from '../../../models/task';
 
 @Component({
   selector: 'app-task-card-header',
   imports: [],
   template: `
-		<div class="task-card-header" [class.completed]="completed">
-			<h2 class="task-title">{{ title }}</h2>
+		<div class="task-card-header" [class.completed]="task().completed">
+			<h2 class="task-title">{{ task().title }}</h2>
 			<div class="task-actions">
-				@if (completed) {
+				@if (task().completed) {
 					<button class="task-action-button cancel">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
 								 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -37,12 +38,10 @@ import { Component } from '@angular/core';
 				</button>
 			</div>
 		</div>
-		<p class="task-description">{{ description }}</p>
+		<p class="task-description">{{ task().description }}</p>
   `,
   styleUrls: ['./task-card-header.component.scss']
 })
 export class TaskCardHeaderComponent {
-  title = 'Update Documentation';
-  description = 'Review and update the API documentation with new endpoints';
-  completed = false;
+  task = input.required<Task>();
 }

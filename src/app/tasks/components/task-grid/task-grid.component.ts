@@ -12,7 +12,7 @@ import { TaskService } from '../../services/task.service';
   template: `
     <div class="task-grid">
 			@for (task of tasks(); track task.id) {
-        <app-task-card/>
+        <app-task-card [task]="task"/>
 			}
     </div>
     <app-new-task-modal/>
