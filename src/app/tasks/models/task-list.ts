@@ -11,6 +11,26 @@ export class TaskList {
     return this.dereference<Task[]>(this.tasksAsArray());
   }
 
+  completeAllTasks(): void {
+    this._tasks.forEach(task => task.completed = true);
+  }
+
+  uncompleteAllTasks(): void {
+    this._tasks.forEach(task => task.completed = false);
+  }
+
+  totalTasks(): number {
+    return this._tasks.size;
+  }
+
+  totalCompletedTasks(): number {
+    return this.tasks().filter(task => task.completed).length;
+  }
+
+  allTasksCompleted(): boolean {
+    return this.tasks().every(task => task.completed);
+  }
+
   completeTask(taskId: string): void {
     const task = this.taskWithId(taskId);
     task.completed = true;
