@@ -9,9 +9,24 @@ import { Task } from '../models/task';
 export class TaskService {
   private _taskList = new TaskList(DUMMY_TASKS);
   private _tasks = signal<Task[]>(this._taskList.tasks());
+  private _totalCompletedTasks = signal<number>(this._taskList.totalCompletedTasks());
+  private _totalTasks = signal<number>(this._taskList.totalTasks());
+  private _allTasksCompleted = signal<boolean>(this._taskList.allTasksCompleted());
 
   tasks(): Signal<Task[]> {
     return this._tasks.asReadonly();
+  }
+
+  totalTasks(): Signal<number> {
+    return this._totalTasks.asReadonly();
+  }
+
+  totalCompletedTasks(): Signal<number> {
+    return this._totalCompletedTasks.asReadonly();
+  }
+
+  allTasksCompleted(): Signal<boolean> {
+    return this._allTasksCompleted.asReadonly();
   }
 
   completeTask(taskId: string): void {
