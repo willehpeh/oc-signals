@@ -1,5 +1,6 @@
 import { Component, computed, input, TemplateRef, viewChild } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
+import { TaskAction } from '../../../../models/task-action';
 
 @Component({
   selector: 'app-task-card-action-button',
@@ -13,7 +14,7 @@ export class TaskCardActionButtonComponent {
   cancelIcon = viewChild.required<TemplateRef<unknown>>('cancelIcon');
   completeIcon = viewChild.required<TemplateRef<unknown>>('completeIcon');
   deleteIcon = viewChild.required<TemplateRef<unknown>>('deleteIcon');
-  action = input.required<'cancel' | 'complete' | 'delete'>();
+  action = input.required<TaskAction>();
   iconTemplate = computed(() => {
     switch (this.action()) {
       case 'cancel':
