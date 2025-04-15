@@ -1,4 +1,4 @@
-import { Task } from "./task";
+import { Task } from './task';
 
 export class TaskList {
   private _tasks: Map<string, Task> = new Map();
@@ -9,6 +9,50 @@ export class TaskList {
 
   tasks(): Task[] {
     return this.dereference<Task[]>(this.tasksAsArray());
+  }
+
+  completeTask(taskId: string): void {
+    const task = this.taskWithId(taskId);
+    task.completed = true;
+  }
+
+  uncompleteTask(taskId: string): void {
+    const task = this.taskWithId(taskId);
+    task.completed = false;
+  }
+
+  completeSubtask(taskId: string, subtaskName: string): void {
+    const task = this.taskWithId(taskId);
+    const subtask = this.subtaskWithNameFromTask(task, subtaskName);
+    subtask.completed = true;
+    this.updateTaskCompletion(task);
+  }
+
+  uncompleteSubtask(taskId: string, subtaskName: string): void {
+    const task = this.taskWithId(taskId);
+    const subtask = this.subtaskWithNameFromTask(task, subtaskName);
+    subtask.completed = false;
+    this.updateTaskCompletion(task);
+  }
+
+  private subtaskWithNameFromTask(task: Task, subtaskName: string) {
+    const subtask = task.subtasks.find(subtask => subtask.title === subtaskName);
+    if (!subtask) {
+      throw new Error(`Subtask ${ subtaskName } not found`);
+    }
+    return subtask;
+  }
+
+  private updateTaskCompletion(task: Task) {
+    task.completed = task.subtasks.every(subtask => subtask.completed);
+  }
+
+  private taskWithId(taskId: string) {
+    const task = this._tasks.get(taskId);
+    if (!task) {
+      throw new Error(`Task with id ${ taskId } not found`);
+    }
+    return task;
   }
 
   private tasksAsArray(): Task[] {
