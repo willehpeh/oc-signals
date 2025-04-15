@@ -9,7 +9,20 @@ import { NewTaskModalFormComponent } from './new-task-modal-form/new-task-modal-
     NewTaskModalHeaderComponent,
     NewTaskModalFormComponent
   ],
-  templateUrl: './new-task-modal.component.html',
+  template: `
+		@if (show()) {
+			<div class="modal-overlay">
+				<div class="modal">
+					<app-new-task-modal-header (close)="onCancel()"/>
+					<app-new-task-modal-form/>
+					<div class="modal-actions">
+						<button class="modal-button cancel" (click)="onCancel()">Cancel</button>
+						<button class="modal-button create" (click)="onCreateTask()">Create Task</button>
+					</div>
+				</div>
+			</div>
+		}
+  `,
   styleUrls: ['./new-task-modal.component.scss']
 })
 export class NewTaskModalComponent {
