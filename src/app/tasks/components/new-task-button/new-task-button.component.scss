@@ -1,0 +1,33 @@
+.new-task-button {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
+  border-image: linear-gradient(135deg, var(--checkbox-gradient-from), var(--checkbox-gradient-to)) 1;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent linear-gradient(135deg, var(--checkbox-gradient-from), var(--checkbox-gradient-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.new-task-button svg {
+  stroke: var(--checkbox-gradient-from);
+}
+
+.new-task-button:hover {
+  background-color: rgba(34, 211, 238, 0.1);
+  transform: translateY(-50%) translateY(-1px);
+}
+
+.new-task-button:active {
+  transform: translateY(-50%) translateY(0);
+}

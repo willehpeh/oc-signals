@@ -1,15 +1,42 @@
 import { Component, computed, signal } from '@angular/core';
+import { NewTaskButtonComponent } from '../../../tasks/components/new-task-button/new-task-button.component';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [
+    NewTaskButtonComponent
+  ],
   template: `
 		<div class="header-container">
 			<h1 class="header">{{ header() }}</h1>
 			<p class="header-tagline">{{ tagline() }}</p>
+      <app-new-task-button/>
 		</div>
   `,
-  styles: ``
+  styles: `
+    .header-container {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .header {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(to right, #22d3ee, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .header-tagline {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+      letter-spacing: -0.025em;
+    }
+  `
 })
 export class HeaderComponent {
 
