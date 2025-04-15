@@ -1,16 +1,7 @@
 @if (show()) {
 	<div class="modal-overlay">
 		<div class="modal">
-			<div class="modal-header">
-				<h2 class="modal-title">Create New Task</h2>
-				<button class="modal-close" (click)="onCancel()">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-							 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-						<line x1="18" y1="6" x2="6" y2="18"/>
-						<line x1="6" y1="6" x2="18" y2="18"/>
-					</svg>
-				</button>
-			</div>
+			<app-new-task-modal-header (close)="onCancel()"/>
 			<form class="modal-form">
 				<div class="form-group">
 					<label for="taskTitle" class="form-label">Task Title</label>
