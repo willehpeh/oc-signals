@@ -3,11 +3,13 @@ import { TaskCardComponent } from '../task-card/task-card.component';
 import { Task } from '../../models/task';
 import { DUMMY_TASKS } from '../../test-data/DUMMY_TASKS';
 import { TaskList } from '../../models/task-list';
+import { NewTaskModalComponent } from '../new-task-modal/new-task-modal.component';
 
 @Component({
   selector: 'app-task-grid',
   imports: [
-    TaskCardComponent
+    TaskCardComponent,
+    NewTaskModalComponent
   ],
   template: `
     <div class="task-grid">
@@ -15,6 +17,7 @@ import { TaskList } from '../../models/task-list';
         <app-task-card/>
 			}
     </div>
+    <app-new-task-modal/>
   `,
   styles: `
     .task-grid {
