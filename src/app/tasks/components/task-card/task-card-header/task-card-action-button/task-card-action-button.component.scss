@@ -1,0 +1,35 @@
+.task-action-button {
+  padding: 0.5rem;
+  border: none;
+  background: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-action-button.complete {
+  color: var(--complete-color);
+}
+
+.task-action-button.complete:hover {
+  background-color: var(--complete-hover);
+}
+
+.task-action-button.cancel {
+  color: var(--text-secondary);
+}
+
+.task-action-button.cancel:hover {
+  background-color: var(--cancel-hover);
+}
+
+.task-action-button.delete {
+  color: var(--delete-color);
+}
+
+.task-action-button.delete:hover {
+  background-color: var(--delete-hover);
+}
