@@ -13,4 +13,24 @@ export class TaskService {
   tasks(): Signal<Task[]> {
     return this._tasks.asReadonly();
   }
+
+  completeTask(taskId: string): void {
+    this._taskList.completeTask(taskId);
+    this._tasks.set(this._taskList.tasks());
+  }
+
+  uncompleteTask(taskId: string): void {
+    this._taskList.uncompleteTask(taskId);
+    this._tasks.set(this._taskList.tasks());
+  }
+
+  completeSubtask(taskId: string, subtaskName: string): void {
+    this._taskList.completeSubtask(taskId, subtaskName);
+    this._tasks.set(this._taskList.tasks());
+  }
+
+  uncompleteSubtask(taskId: string, subtaskName: string): void {
+    this._taskList.uncompleteSubtask(taskId, subtaskName);
+    this._tasks.set(this._taskList.tasks());
+  }
 }
