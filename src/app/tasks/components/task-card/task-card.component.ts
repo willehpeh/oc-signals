@@ -9,7 +9,7 @@ import { SubtasksListComponent } from './subtasks-list/subtasks-list.component';
     SubtasksListComponent
   ],
   template: `
-		<div class="task-card">
+		<div class="task-card" [class.completed]="completed">
 			<app-task-card-header/>
       <app-subtasks-list/>
 		</div>
@@ -17,4 +17,5 @@ import { SubtasksListComponent } from './subtasks-list/subtasks-list.component';
   styleUrls: ['./task-card.component.scss']
 })
 export class TaskCardComponent {
+  completed = false;
 }
