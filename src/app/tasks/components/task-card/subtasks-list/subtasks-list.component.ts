@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { SubtasksListItemComponent } from './subtasks-list-item/subtasks-list-item.component';
+import { Subtask } from '../../../models/subtask';
 
 @Component({
   selector: 'app-subtasks-list',
@@ -8,8 +9,8 @@ import { SubtasksListItemComponent } from './subtasks-list-item/subtasks-list-it
   ],
   template: `
     <div class="subtasks-list">
-			@for (subtask of subtasks; track subtask.title) {
-        <app-subtasks-list-item/>
+			@for (subtask of subtasks(); track subtask.title) {
+        <app-subtasks-list-item [subtask]="subtask"/>
 			}
     </div>
   `,
@@ -23,10 +24,5 @@ import { SubtasksListItemComponent } from './subtasks-list-item/subtasks-list-it
   `
 })
 export class SubtasksListComponent {
-  subtasks = [
-    { title: 'Research client background', completed: true },
-    { title: 'Outline proposal structure', completed: true },
-    { title: 'Write first draft', completed: false },
-    { title: 'Review with team', completed: false }
-  ];
+  subtasks = input<Subtask[]>([]);
 }

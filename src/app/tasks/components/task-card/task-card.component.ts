@@ -12,7 +12,7 @@ import { Task } from '../../models/task';
   template: `
 		<div class="task-card" [class.completed]="completed()">
 			<app-task-card-header [task]="task()"/>
-      <app-subtasks-list/>
+      <app-subtasks-list [subtasks]="task().subtasks"/>
 		</div>
   `,
   styleUrls: ['./task-card.component.scss']
