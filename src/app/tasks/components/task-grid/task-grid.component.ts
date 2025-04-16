@@ -46,6 +46,7 @@ export class TaskGridComponent {
         this.taskService.uncompleteTask(id);
         break;
       case 'delete':
+        this.taskService.deleteTask(id);
         break;
     }
   }
