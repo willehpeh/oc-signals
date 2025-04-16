@@ -31,21 +31,30 @@ export class TaskService {
 
   completeTask(taskId: string): void {
     this._taskList.completeTask(taskId);
-    this._tasks.set(this._taskList.tasks());
+    this.emitTasks();
   }
 
   uncompleteTask(taskId: string): void {
     this._taskList.uncompleteTask(taskId);
-    this._tasks.set(this._taskList.tasks());
+    this.emitTasks();
   }
 
   completeSubtask(taskId: string, subtaskName: string): void {
     this._taskList.completeSubtask(taskId, subtaskName);
-    this._tasks.set(this._taskList.tasks());
+    this.emitTasks();
   }
 
   uncompleteSubtask(taskId: string, subtaskName: string): void {
     this._taskList.uncompleteSubtask(taskId, subtaskName);
+    this.emitTasks();
+  }
+
+  deleteTask(taskId: string): void {
+    this._taskList.deleteTask(taskId);
+    this.emitTasks();
+  }
+
+  private emitTasks() {
     this._tasks.set(this._taskList.tasks());
   }
 }

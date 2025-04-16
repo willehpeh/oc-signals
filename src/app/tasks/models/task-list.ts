@@ -55,6 +55,10 @@ export class TaskList {
     this.updateTaskCompletion(task);
   }
 
+  deleteTask(taskId: string): void {
+    this._tasks.delete(taskId);
+  }
+
   private subtaskWithNameFromTask(task: Task, subtaskName: string) {
     const subtask = task.subtasks.find(subtask => subtask.title === subtaskName);
     if (!subtask) {
