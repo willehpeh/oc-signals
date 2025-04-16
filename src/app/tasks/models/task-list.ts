@@ -34,11 +34,13 @@ export class TaskList {
   completeTask(taskId: string): void {
     const task = this.taskWithId(taskId);
     task.completed = true;
+    task.subtasks.forEach(subtask => subtask.completed = true);
   }
 
   uncompleteTask(taskId: string): void {
     const task = this.taskWithId(taskId);
     task.completed = false;
+    task.subtasks.forEach(subtask => subtask.completed = false);
   }
 
   completeSubtask(taskId: string, subtaskName: string): void {
