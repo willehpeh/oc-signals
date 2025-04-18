@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CompleteAllTasksButtonComponent } from './complete-all-tasks-button/complete-all-tasks-button.component';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-progress',
@@ -23,6 +24,7 @@ import { ProgressBarComponent } from './progress-bar/progress-bar.component';
   styleUrls: ['./progress.component.scss']
 })
 export class ProgressComponent {
-  totalTasks = signal<number>(9);
-  completedTasks = signal<number>(2);
+  private taskService = inject(TaskService);
+  totalTasks = this.taskService.totalTasks();
+  completedTasks = this.taskService.totalCompletedTasks();
 }
