@@ -54,6 +54,11 @@ export class TaskService {
     this.emitTasks();
   }
 
+  completeAllTasks(): void {
+    this._taskList.completeAllTasks();
+    this.emitTasks();
+  }
+
   private emitTasks() {
     this._tasks.set(this._taskList.tasks());
     this._totalCompletedTasks.set(this._taskList.totalCompletedTasks());
