@@ -1,0 +1,29 @@
+.complete-all-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--complete-color);
+  color: var(--bg-color);
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.complete-all-button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.complete-all-button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .complete-all-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
