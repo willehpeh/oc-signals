@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { SubtasksListItemComponent } from './subtasks-list-item/subtasks-list-item.component';
 import { Subtask } from '../../../models/subtask';
 
@@ -8,11 +8,12 @@ import { Subtask } from '../../../models/subtask';
     SubtasksListItemComponent
   ],
   template: `
-    <div class="subtasks-list">
+		<div class="subtasks-list">
 			@for (subtask of subtasks(); track subtask.title) {
-        <app-subtasks-list-item [subtask]="subtask"/>
+				<app-subtasks-list-item [subtask]="subtask" 
+                                (subtaskToggle)="onSubtaskToggle(subtask.title, $event)"/>
 			}
-    </div>
+		</div>
   `,
   styles: `
     .subtasks-list {
@@ -25,4 +26,9 @@ import { Subtask } from '../../../models/subtask';
 })
 export class SubtasksListComponent {
   subtasks = input<Subtask[]>([]);
+  subtaskToggle = output<{ title: string, checked: boolean }>();
+
+  onSubtaskToggle(title: string, checked: boolean) {
+    this.subtaskToggle.emit({ title, checked });
+  }
 }

@@ -13,7 +13,9 @@ import { TaskAction } from '../../models/task-action';
   template: `
     <div class="task-grid">
 			@for (task of tasks(); track task.id) {
-        <app-task-card [task]="task" (taskAction)="onTaskAction(task.id, $event)"/>
+        <app-task-card [task]="task" 
+                       (taskAction)="onTaskAction(task.id, $event)" 
+                       (subtaskToggle)="onSubtaskToggle(task.id, $event)" />
 			}
     </div>
     <app-new-task-modal/>
@@ -49,5 +51,12 @@ export class TaskGridComponent {
         this.taskService.deleteTask(id);
         break;
     }
+  }
+
+
+  onSubtaskToggle(id: string, subtaskToggle: { title: string; checked: boolean }) {
+    subtaskToggle.checked ?
+      this.taskService.completeSubtask(id, subtaskToggle.title) :
+      this.taskService.uncompleteSubtask(id, subtaskToggle.title);
   }
 }

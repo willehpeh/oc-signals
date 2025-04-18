@@ -12,9 +12,9 @@ import { TaskAction } from '../../models/task-action';
   ],
   template: `
 		<div class="task-card" [class.completed]="completed()">
-			<app-task-card-header [task]="task()" 
-                            (taskAction)="onTaskAction($event)"/>
-      <app-subtasks-list [subtasks]="task().subtasks"/>
+			<app-task-card-header [task]="task()"
+														(taskAction)="onTaskAction($event)"/>
+			<app-subtasks-list [subtasks]="task().subtasks" (subtaskToggle)="onSubtaskToggle($event)"/>
 		</div>
   `,
   styleUrls: ['./task-card.component.scss']
@@ -23,8 +23,13 @@ export class TaskCardComponent {
   task = input.required<Task>();
   completed = computed(() => this.task().completed);
   taskAction = output<TaskAction>();
+  subtaskToggle = output<{ title: string; checked: boolean }>();
 
   onTaskAction(action: TaskAction) {
     this.taskAction.emit(action);
+  }
+
+  onSubtaskToggle(toggleEvent: { title: string; checked: boolean }) {
+    this.subtaskToggle.emit(toggleEvent);
   }
 }
