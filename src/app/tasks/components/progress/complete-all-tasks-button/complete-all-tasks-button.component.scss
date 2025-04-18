@@ -12,9 +12,19 @@
   transition: all 0.2s ease;
 }
 
+.disabled {
+  background-color: var(--text-secondary);
+  cursor: not-allowed;
+}
+
 .complete-all-button:hover {
   opacity: 0.9;
   transform: translateY(-1px);
+}
+
+.disabled:hover {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .complete-all-button:active {
