@@ -27,4 +27,8 @@ export class ProgressComponent {
   private taskService = inject(TaskService);
   totalTasks = this.taskService.totalTasks();
   completedTasks = this.taskService.totalCompletedTasks();
+
+  onCompleteAllTasks() {
+    this.taskService.completeAllTasks();
+  }
 }
