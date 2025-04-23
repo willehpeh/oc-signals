@@ -12,11 +12,17 @@ export class TaskList {
   }
 
   completeAllTasks(): void {
-    this._tasks.forEach(task => task.completed = true);
+    this._tasks.forEach(task => {
+      task.completed = true;
+      task.subtasks.forEach(subtask => subtask.completed = true);
+    });
   }
 
   uncompleteAllTasks(): void {
-    this._tasks.forEach(task => task.completed = false);
+    this._tasks.forEach(task => {
+      task.completed = false;
+      task.subtasks.forEach(subtask => subtask.completed = false);
+    });
   }
 
   totalTasks(): number {
