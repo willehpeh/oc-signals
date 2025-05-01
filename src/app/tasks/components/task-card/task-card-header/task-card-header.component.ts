@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { TaskCardActionButtonComponent } from './task-card-action-button/task-card-action-button.component';
+import { Task } from '../../../models/task';
 
 @Component({
   selector: 'app-task-card-header',
@@ -7,10 +8,10 @@ import { TaskCardActionButtonComponent } from './task-card-action-button/task-ca
     TaskCardActionButtonComponent
   ],
   template: `
-		<div class="task-card-header" [class.completed]="completed">
-			<h2 class="task-title">{{ title }}</h2>
+		<div class="task-card-header" [class.completed]="task().completed">
+			<h2 class="task-title">{{ task().title }}</h2>
 			<div class="task-actions">
-				@if (completed) {
+				@if (task().completed) {
 					<app-task-card-action-button action="cancel"/>
 				} @else {
 					<app-task-card-action-button action="complete"/>
@@ -18,12 +19,10 @@ import { TaskCardActionButtonComponent } from './task-card-action-button/task-ca
 				<app-task-card-action-button action="delete"/>
 			</div>
 		</div>
-		<p class="task-description">{{ description }}</p>
+		<p class="task-description">{{ task().description }}</p>
   `,
   styleUrls: ['./task-card-header.component.scss']
 })
 export class TaskCardHeaderComponent {
-  title = 'Update Documentation';
-  description = 'Review and update the API documentation with new endpoints';
-  completed = false;
+  task = input.required<Task>();
 }
