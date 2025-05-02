@@ -1,5 +1,5 @@
 import { Task } from './task';
-import { Subtask } from './subtask';
+import { CreateTaskDto } from './create-task.dto';
 
 export class TaskList {
   private _tasks: Map<string, Task> = new Map();
@@ -62,12 +62,15 @@ export class TaskList {
     this._tasks.delete(taskId);
   }
 
-  addTask(taskProps: { title: string, description: string, subtasks: Subtask[] }): void {
+  addTask(dto: CreateTaskDto): void {
     const task: Task = {
       id: this.generateUUID(),
-      title: taskProps.title,
-      description: taskProps.description,
-      subtasks: taskProps.subtasks.slice(),
+      title: dto.title,
+      description: dto.description,
+      subtasks: dto.subtasks.map(subtask => ({
+        title: subtask,
+        completed: false
+      })),
       completed: false
     };
 

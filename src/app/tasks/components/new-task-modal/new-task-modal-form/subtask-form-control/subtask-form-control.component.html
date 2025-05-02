@@ -2,7 +2,7 @@
 <div class="subtasks-container">
 	@for (subtask of controls(); track subtask; let index = $index) {
 		<div class="subtask-input-group">
-			<input type="text" class="form-input subtask-input" placeholder="Enter subtask">
+			<input type="text" class="form-input subtask-input" placeholder="Enter subtask" [formControl]="subtask">
 			<button type="button" class="remove-subtask-button" (click)="onRemoveSubtask(index)">
 				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
 						 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

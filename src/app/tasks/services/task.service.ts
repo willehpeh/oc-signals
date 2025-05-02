@@ -2,7 +2,7 @@ import { Injectable, Signal, signal } from '@angular/core';
 import { TaskList } from '../models/task-list';
 import { DUMMY_TASKS } from '../test-data/DUMMY_TASKS';
 import { Task } from '../models/task';
-import { Subtask } from '../models/subtask';
+import { CreateTaskDto } from '../models/create-task.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -60,7 +60,7 @@ export class TaskService {
     this.emitTasks();
   }
 
-  addTask(taskProps: { title: string, description: string, subtasks: Subtask[] }): void {
+  addTask(taskProps: CreateTaskDto): void {
     this._taskList.addTask(taskProps);
     this.emitTasks();
   }
