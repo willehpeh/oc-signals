@@ -11,14 +11,14 @@ import { TaskAction } from '../../models/task-action';
     NewTaskModalComponent
   ],
   template: `
-    <div class="task-grid">
+		<div class="task-grid">
 			@for (task of tasks(); track task.id) {
-        <app-task-card [task]="task" 
-                       (taskAction)="onTaskAction(task.id, $event)" 
-                       (subtaskToggle)="onSubtaskToggle(task.id, $event)" />
+				<app-task-card [task]="task"
+											 (taskAction)="onTaskAction(task.id, $event)"
+											 (subtaskToggle)="onSubtaskToggle(task.id, $event)"/>
 			}
-    </div>
-    <app-new-task-modal/>
+		</div>
+		<app-new-task-modal/>
   `,
   styles: `
     .task-grid {
@@ -46,11 +46,13 @@ export class TaskGridComponent {
 
   constructor() {
     effect(() => {
+      const currentPendingTaskIds = this.currentPendingTaskIds();
       const storedPendingTaskIds = localStorage.getItem('pendingTasks');
-      if (storedPendingTaskIds !== this.currentPendingTaskIds()) {
-        localStorage.setItem('pendingTasks', this.currentPendingTaskIds());
-        console.log('Updated pending tasks in localStorage');
+      if (currentPendingTaskIds === storedPendingTaskIds) {
+        return;
       }
+      localStorage.setItem('pendingTasks', currentPendingTaskIds);
+      console.log('Updated pending tasks in localStorage');
     });
   }
 

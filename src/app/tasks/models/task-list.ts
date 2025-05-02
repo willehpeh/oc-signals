@@ -1,4 +1,5 @@
 import { Task } from './task';
+import { CreateTaskDto } from './create-task.dto';
 
 export class TaskList {
   private _tasks: Map<string, Task> = new Map();
@@ -12,11 +13,17 @@ export class TaskList {
   }
 
   completeAllTasks(): void {
-    this._tasks.forEach(task => task.completed = true);
+    this._tasks.forEach(task => {
+      task.completed = true;
+      task.subtasks.forEach(subtask => subtask.completed = true);
+    });
   }
 
   uncompleteAllTasks(): void {
-    this._tasks.forEach(task => task.completed = false);
+    this._tasks.forEach(task => {
+      task.completed = false;
+      task.subtasks.forEach(subtask => subtask.completed = false);
+    });
   }
 
   totalTasks(): number {
@@ -60,6 +67,40 @@ export class TaskList {
   deleteTask(taskId: string): void {
     this._tasks.delete(taskId);
   }
+
+  addTask(dto: CreateTaskDto): void {
+    const task: Task = {
+      id: this.generateUUID(),
+      title: dto.title,
+      description: dto.description,
+      subtasks: dto.subtasks.map(subtask => ({
+        title: subtask,
+        completed: false
+      })),
+      completed: false
+    };
+
+    this._tasks.set(task.id, task);
+  }
+
+  private generateUUID(): string {
+    return [
+      this.randomHex(8),
+      this.randomHex(4),
+      '4' + this.randomHex(3),
+      '89ab'[Math.floor(Math.random() * 4)] + this.randomHex(3),
+      this.randomHex(12)
+    ].join('-');
+  }
+
+  private randomHex(length: number): string {
+    let result = '';
+    const hexChars = '0123456789abcdef';
+    for (let i = 0; i < length; i++) {
+      result += hexChars.charAt(Math.floor(Math.random() * hexChars.length));
+    }
+    return result;
+  };
 
   private subtaskWithNameFromTask(task: Task, subtaskName: string) {
     const subtask = task.subtasks.find(subtask => subtask.title === subtaskName);

@@ -2,6 +2,8 @@ import { Component, inject, signal } from '@angular/core';
 import { ModalService } from '../../services/modal.service';
 import { NewTaskModalHeaderComponent } from './new-task-modal-header/new-task-modal-header.component';
 import { NewTaskModalFormComponent } from './new-task-modal-form/new-task-modal-form.component';
+import { nullCreateTaskDto } from '../../models/create-task.dto';
+import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-new-task-modal',
@@ -14,7 +16,7 @@ import { NewTaskModalFormComponent } from './new-task-modal-form/new-task-modal-
 			<div class="modal-overlay">
 				<div class="modal">
 					<app-new-task-modal-header (close)="onCancel()"/>
-					<app-new-task-modal-form/>
+					<app-new-task-modal-form [(newTask)]="newTask"/>
 					<div class="modal-actions">
 						<button class="modal-button cancel" (click)="onCancel()">Cancel</button>
 						<button class="modal-button create" (click)="onCreateTask()">Create Task</button>
@@ -26,19 +28,28 @@ import { NewTaskModalFormComponent } from './new-task-modal-form/new-task-modal-
   styleUrls: ['./new-task-modal.component.scss']
 })
 export class NewTaskModalComponent {
+  newTask = signal(nullCreateTaskDto());
+
   private modalService = inject(ModalService);
   show = this.modalService.newTaskModalVisible;
-  newTask = signal({
-    title: '',
-    description: '',
-    subtasks: []
-  });
+
+  private taskService = inject(TaskService);
 
   onCancel() {
-    this.modalService.toggleNewTaskModal();
+    this.resetNewTask();
+    this.closeModal();
   }
 
   onCreateTask() {
+    this.taskService.addTask(this.newTask());
+    this.closeModal();
+  }
 
+  private resetNewTask() {
+    this.newTask.set(nullCreateTaskDto());
+  }
+
+  private closeModal(): void {
+    this.modalService.toggleNewTaskModal();
   }
 }
