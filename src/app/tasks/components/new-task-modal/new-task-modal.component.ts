@@ -16,7 +16,7 @@ import { TaskService } from '../../services/task.service';
 			<div class="modal-overlay">
 				<div class="modal">
 					<app-new-task-modal-header (close)="onCancel()"/>
-					<app-new-task-modal-form/>
+					<app-new-task-modal-form [(newTask)]="newTask"/>
 					<div class="modal-actions">
 						<button class="modal-button cancel" (click)="onCancel()">Cancel</button>
 						<button class="modal-button create" (click)="onCreateTask()">Create Task</button>
@@ -41,8 +41,7 @@ export class NewTaskModalComponent {
   }
 
   onCreateTask() {
-    // this.taskService.addTask(this.newTask());
-    console.log(this.newTask());
+    this.taskService.addTask(this.newTask());
     this.closeModal();
   }
 

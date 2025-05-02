@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, model } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SubtaskFormControlComponent } from './subtask-form-control/subtask-form-control.component';
 import { CreateTaskDto, nullCreateTaskDto } from '../../../models/create-task.dto';
@@ -17,7 +17,7 @@ import { tap } from 'rxjs';
 export class NewTaskModalFormComponent {
   private formBuilder = inject(FormBuilder);
   newTaskForm = this.generateNewTaskForm();
-  newTask = signal<CreateTaskDto>(nullCreateTaskDto());
+  newTask = model<CreateTaskDto>(nullCreateTaskDto());
   newTaskUpdates$ = this.newTaskForm.valueChanges.pipe(
     takeUntilDestroyed(),
     tap(value => this.newTask.set(value as CreateTaskDto))
@@ -33,9 +33,13 @@ export class NewTaskModalFormComponent {
 
   private generateNewTaskForm(): FormGroup {
     return this.formBuilder.group({
-      title: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
-      description: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+      title: this.emptyNonNullableRequiredControl(),
+      description: this.emptyNonNullableRequiredControl(),
       subtasks: this.formBuilder.array<string[]>([])
     });
+  }
+
+  private emptyNonNullableRequiredControl() {
+    return new FormControl('', { nonNullable: true, validators: [Validators.required] });
   }
 }
