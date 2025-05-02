@@ -18,7 +18,7 @@ import { TaskService } from '../../services/task.service';
 				</div>
 				<app-progress-bar [progressPercentage]="progressPercentage()"/>
 			</div>
-			<app-complete-all-tasks-button/>
+			<app-complete-all-tasks-button (completeAll)="onCompleteAllTasks()" [allTasksCompleted]="allTasksCompleted()"/>
 		</div>
   `,
   styleUrls: ['./progress.component.scss']
@@ -28,6 +28,7 @@ export class ProgressComponent {
   totalTasks = this.taskService.totalTasks();
   completedTasks = this.taskService.totalCompletedTasks();
   progressPercentage = computed(() => Math.round(this.completedTasks() / this.totalTasks() * 100));
+  allTasksCompleted = computed(() => this.completedTasks() === this.totalTasks());
 
   onCompleteAllTasks() {
     this.taskService.completeAllTasks();

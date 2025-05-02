@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-complete-all-tasks-button',
   imports: [],
   template: `
-		<button class="complete-all-button">
+		<button class="complete-all-button" 
+            [class.disabled]="allTasksCompleted()" 
+            (click)="onCompleteAll()" 
+            [disabled]="allTasksCompleted()">
 			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
 					 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 				<circle cx="12" cy="12" r="10"/>
@@ -16,5 +19,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./complete-all-tasks-button.component.scss']
 })
 export class CompleteAllTasksButtonComponent {
+  allTasksCompleted = input<boolean>();
+  completeAll = output<void>();
 
+  onCompleteAll() {
+    this.completeAll.emit();
+  }
 }
