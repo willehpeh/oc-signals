@@ -1,4 +1,5 @@
 import { Task } from './task';
+import { Subtask } from './subtask';
 
 export class TaskList {
   private _tasks: Map<string, Task> = new Map();
@@ -60,6 +61,37 @@ export class TaskList {
   deleteTask(taskId: string): void {
     this._tasks.delete(taskId);
   }
+
+  addTask(taskProps: { title: string, description: string, subtasks: Subtask[] }): void {
+    const task: Task = {
+      id: this.generateUUID(),
+      title: taskProps.title,
+      description: taskProps.description,
+      subtasks: taskProps.subtasks.slice(),
+      completed: false
+    };
+
+    this._tasks.set(task.id, task);
+  }
+
+  private generateUUID(): string {
+    return [
+      this.randomHex(8),
+      this.randomHex(4),
+      '4' + this.randomHex(3),
+      '89ab'[Math.floor(Math.random() * 4)] + this.randomHex(3),
+      this.randomHex(12)
+    ].join('-');
+  }
+
+  private randomHex(length: number): string {
+    let result = '';
+    const hexChars = '0123456789abcdef';
+    for (let i = 0; i < length; i++) {
+      result += hexChars.charAt(Math.floor(Math.random() * hexChars.length));
+    }
+    return result;
+  };
 
   private subtaskWithNameFromTask(task: Task, subtaskName: string) {
     const subtask = task.subtasks.find(subtask => subtask.title === subtaskName);
