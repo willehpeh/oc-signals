@@ -1,5 +1,5 @@
-import { Component, input } from '@angular/core';
-import { FormArray } from '@angular/forms';
+import { Component, computed, input } from '@angular/core';
+import { FormArray, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-subtask-form-control',
@@ -9,4 +9,13 @@ import { FormArray } from '@angular/forms';
 })
 export class SubtaskFormControlComponent {
   formArray = input.required<FormArray>();
+  controls = computed(() => this.formArray().controls);
+
+  onAddSubtask() {
+    this.formArray().push(new FormControl(''));
+  }
+
+  onRemoveSubtask(index: number) {
+    this.formArray().removeAt(index);
+  }
 }
