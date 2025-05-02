@@ -1,0 +1,13 @@
+<form class="modal-form" [formGroup]="newTaskForm">
+	<div class="form-group">
+		<label for="taskTitle" class="form-label">Task Title</label>
+		<input type="text" id="taskTitle" class="form-input" placeholder="Enter task title" formControlName="title">
+	</div>
+	<div class="form-group">
+		<label for="taskDescription" class="form-label">Description</label>
+		<textarea id="taskDescription" class="form-textarea" placeholder="Enter task description" formControlName="description"></textarea>
+	</div>
+	<div class="form-group">
+		<app-subtask-form-control [formArray]="subtasksFormArray()"/>
+	</div>
+</form>
