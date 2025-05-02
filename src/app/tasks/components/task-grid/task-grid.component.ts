@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { TaskCardComponent } from '../task-card/task-card.component';
 import { NewTaskModalComponent } from '../new-task-modal/new-task-modal.component';
 import { TaskService } from '../../services/task.service';
@@ -38,6 +38,21 @@ import { TaskAction } from '../../models/task-action';
 export class TaskGridComponent {
   private taskService = inject(TaskService);
   tasks = this.taskService.tasks();
+  private currentPendingTaskIds = computed(() => this.tasks()
+    .filter(task => !task.completed)
+    .map(task => task.id)
+    .join(',')
+  );
+
+  constructor() {
+    effect(() => {
+      const storedPendingTaskIds = localStorage.getItem('pendingTasks');
+      if (storedPendingTaskIds !== this.currentPendingTaskIds()) {
+        localStorage.setItem('pendingTasks', this.currentPendingTaskIds());
+        console.log('Updated pending tasks in localStorage');
+      }
+    });
+  }
 
   onTaskAction(id: string, action: TaskAction) {
     switch (action) {
