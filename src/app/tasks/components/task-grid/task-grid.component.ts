@@ -46,9 +46,9 @@ export class TaskGridComponent {
 
   constructor() {
     effect(() => {
-      const storedPendingTaskIds = localStorage.getItem('pendingTasks');
       const currentPendingTaskIds = this.currentPendingTaskIds();
-      if (storedPendingTaskIds === currentPendingTaskIds) {
+      const storedPendingTaskIds = localStorage.getItem('pendingTasks');
+      if (currentPendingTaskIds === storedPendingTaskIds) {
         return;
       }
       localStorage.setItem('pendingTasks', currentPendingTaskIds);
